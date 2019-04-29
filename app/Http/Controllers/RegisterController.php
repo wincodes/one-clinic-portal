@@ -73,19 +73,21 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'hospital_name' => ['required', 'string', 'max:50'],
+            'hospital_name' => ['required', 'string', 'max:50', 'unique:users'],
             'phone' => ['required', 'string', 'max:20'],
         ]);
 
-        // return $registered = User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'phone' => $data['phone'],
-        //     'confirmed' => 0
-        // ]);
-
-        // event( new RegistrationEvent($registered));
-        return $data;
+        $registered = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'hospital_name' => $data['hospital_name'],
+            'confirmed' => 0,
+            'active' => 0,
+            'online_status' => 0
+        ]);
+        event( new RegistrationEvent($registered));
+        // return $data;
     }
 }
