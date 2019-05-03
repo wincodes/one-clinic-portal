@@ -74,7 +74,6 @@ class RegisterHospitalListener
     {
            
                 Artisan::call('migrate', [
-                    '--database' => 'tenant',
                     '--path' => 'database/migrations/setup',
                     '--force' => true,
                 ]);

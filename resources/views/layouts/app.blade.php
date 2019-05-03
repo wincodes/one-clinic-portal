@@ -41,11 +41,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="login">Login</a>
+                                <a class="nav-link" href="/login">Login</a>
                             </li>
                             @if (empty(Auth::user()))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="register">Register</a>
+                                    <a class="nav-link" href="/register">Register</a>
                                 </li>
                             @endif
                         @else
@@ -73,6 +73,13 @@
         </nav>
 
         <main class="py-4">
+         <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {!! session('status') !!}
+                        </div>
+                    @endif
+         </div>
             @yield('content')
         </main>
     </div>

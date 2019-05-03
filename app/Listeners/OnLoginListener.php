@@ -4,11 +4,8 @@ namespace App\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Events\RegistrationEvent;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\WelcomeMail;
 
-class SendWelcomeMailListener
+class OnLoginListener
 {
     /**
      * Create the event listener.
@@ -28,9 +25,7 @@ class SendWelcomeMailListener
      */
     public function handle($event)
     {
-        //this will send a welcome mail to the user
-        $data = $event->registered;
-        $url = config("app.url").'/register/confirm/'.$event->registered->email.'/'.$event->registered->remember_token;
-        Mail::to($data->email)->send(new WelcomeMail($data, $url));
+        //$event->user;
+
     }
 }
