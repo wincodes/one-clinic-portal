@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Register</div>
 
-                <div class="card-body">
+ <div class="intro-section bg-image overlay" style="background-image: url('images/medical-5.jpeg');">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-8 text-center testimony">
+            <div class="card-body">
+                <h3 class="mb-4">Register</h3>
                     <form method="POST" action="register">
                         @csrf
 
@@ -92,12 +92,17 @@
                                 <button type="submit" class="btn btn-primary">
                                    Register
                                 </button>
+                                <a class="btn btn-link" href="/recovery">
+                                    Forgot Your Password?
+                                </a>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div>
+          </div>
         </div>
-    </div>
+      </div>
 </div>
+@include('packages')
+@include('contact')
 @endsection

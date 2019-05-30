@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('auth.login');
+        return view('index');
     }
 
     public function mylogin(Request $request)
@@ -59,7 +59,7 @@ class LoginController extends Controller
     
                     event( new OnLogin($user));
                     
-                    return redirect('/');
+                    return redirect('/dashboard');
                 }
             }else
             {

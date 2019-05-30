@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         // return view('home');
 
-        return view('welcome');
+        return view('index');
     }
 
     public function login()

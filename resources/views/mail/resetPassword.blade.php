@@ -10,7 +10,7 @@ Please click the button below to reset your password or copy and paste the link 
 Plese note that the link expires after the first click.
 
 @component('mail::button', ['url' => $url])
-Verify Mail
+Reset Your Password
 @endcomponent
 
 {{$url}}

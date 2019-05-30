@@ -32,3 +32,6 @@ Route::post('/register', 'RegisterController@create');
 Route::get('/register/confirm/{email}/{token}', 'RegisterController@confirm');
 Route::get('/register/resend', 'RegisterController@resend');
 Route::post('/register/resend', 'RegisterController@verifyMail');
+
+
+Route::get('/dashboard', 'DashboardController@index');
