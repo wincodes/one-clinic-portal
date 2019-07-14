@@ -10,7 +10,8 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4">
                   <h1  data-aos="fade-up" data-aos-delay="100">Welcome To Clinic Portals </h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">The Best Hospital and Clinic Management Software Available.</p>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">The Best Hospital and Clinic Management Software Available.<br>
+                  Click the link below to Register and Start a One Month Free Trial</p>
                   <p data-aos="fade-up" data-aos-delay="300"><a href="/register" class="btn btn-primary py-3 px-5 btn-pill">Sign Up Now</a></p>
 
                 </div>

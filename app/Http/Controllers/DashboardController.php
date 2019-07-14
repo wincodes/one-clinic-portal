@@ -25,7 +25,7 @@ class DashboardController extends Controller
     {
         // return view('home');
 
-        return view('admin.dashboard');
+        return view('dashboard.dashboard');
     }
 
     

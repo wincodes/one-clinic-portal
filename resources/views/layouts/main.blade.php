@@ -91,7 +91,8 @@
                     <div class="col-md-12">
                       <div class="border-top pt-5">
                       <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Classic Technologies </a>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Software by WinLabs | Template by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+                        {{-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->  --}}
                       </p>
                       </div>
                     </div>
