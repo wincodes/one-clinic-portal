@@ -38,7 +38,11 @@ class RegisterHospitalListener
         //create a new hospital
         Hospital::create([
             'user_id' => $event->registered->id,
-            'hospital_name' => $hospital_name
+            'hospital_name' => $hospital_name,
+            'address' => $event->registered->hospital_address,
+            'city' => $event->registered->city,
+            'state' => $event->registered->state,
+            'country_id' => $event->registered->country
         ]);
 
         
@@ -74,6 +78,7 @@ class RegisterHospitalListener
     {
            
                 Artisan::call('migrate', [
+                    '--database' => 'tenant',
                     '--path' => 'database/migrations/setup',
                     '--force' => true,
                 ]);

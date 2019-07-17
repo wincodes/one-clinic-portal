@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
 
 class UserController extends Controller
 {
@@ -18,7 +21,9 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.profile.index');
+        $profile = Profile::where('user_id', Auth::id());
+        dd($profile);
+        return view('user.profile.index')->with('profile', $profile);
     }
 
     public function editProfile()

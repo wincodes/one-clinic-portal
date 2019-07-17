@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('confirmed');
             $table->integer('online_status');
             $table->string('phone');
+            $table->string('role');
             $table->timestamp('last_active_time')->nullable();
             $table->timestamp('last_login')->nullable();
             $table->string('session_id')->nullable();

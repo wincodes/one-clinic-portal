@@ -7,8 +7,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Events\RegistrationEvent;
+use App\Events\OnLogin;
 use App\Listeners\RegisterHospitalListener;
 use App\Listeners\SendWelcomeMailListener;
+use App\Listeners\OnLoginListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
             RegisterHospitalListener::class,
             SendWelcomeMailListener::class,
         ],
+        OnLogin::class => [
+            OnLoginListener::class
+        ]
     ];
 
     /**

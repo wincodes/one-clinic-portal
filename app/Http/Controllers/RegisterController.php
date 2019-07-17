@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Country;
 
 class RegisterController extends Controller
 {
@@ -48,7 +49,9 @@ class RegisterController extends Controller
 
     public function index()
     {
-        return view('auth.register');
+        $country = Country::all();
+        // dd($country);
+        return view('auth.register')->with('countries', $country);
     }
     /**
      * Get a validator for an incoming registration request.
@@ -79,7 +82,12 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'hospital_name' => ['required', 'string', 'max:50', 'unique:users'],
             'phone' => ['required', 'string', 'max:20'],
+            'hospital_address' => ['required', 'string', 'max:50'],
+            'city' => ['required', 'string', 'max:20'],
+            'state' => ['required', 'string', 'max:20'],
+            'country' => ['required', 'integer']
         ]);
+        // return dd($data);
 
         $registered = User::create([
             'name' => $data['name'],
@@ -88,12 +96,19 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'remember_token' => Str::random(30),
             'hospital_name' => $data['hospital_name'],
+            'role' => 'admin',
             'confirmed' => 0,
             'active' => 0,
             'online_status' => 0
         ]);
 
-        // return $registered;
+        $registered['hospital_address'] = $data['hospital_address'];
+        $registered['city'] = $data['city'];
+        $registered['state'] = $data['state'];
+        $registered['country'] = $data['country'];
+
+ 
+        // dd($registered);
 
         if(event( new RegistrationEvent($registered)))
         {

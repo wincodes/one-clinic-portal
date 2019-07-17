@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'hospital_name', 'confirmed', 'active', 'remember_token', 'online_status'
+        'name', 'email', 'password', 'phone', 'role', 'hospital_name', 'confirmed', 'active', 'remember_token', 'online_status'
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user()
+    {
+    	return $this->hasOne('App\Models\Hospital');
+    }
+
+    public function profile()
+    {
+    	return $this->hasOne('App\Models\Profile');
+    }
 }
