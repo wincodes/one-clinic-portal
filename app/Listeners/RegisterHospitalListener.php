@@ -38,7 +38,7 @@ class RegisterHospitalListener
         //create a new hospital
         Hospital::create([
             'user_id' => $event->registered->id,
-            'hospital_name' => $hospital_name,
+            'hospital_database' => $hospital_name,
             'address' => $event->registered->hospital_address,
             'city' => $event->registered->city,
             'state' => $event->registered->state,

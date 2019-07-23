@@ -1,35 +1,22 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Traits;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\Hospital;
 use DB;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Hospital;
 
-class OnLoginListener
+trait TenantDb 
 {
     /**
-     * Create the event listener.
+     * Set the tenant config
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     //
-    // }
-
-    /**
-     * Handle the event.
-     *
-     * @param  object  $event
-     * @return void
-     */
-    public function handle($event)
+    public function __construct()
     {
-        $hospital = Hospital::where('user_id',  $event->user->id)->first();
+        $hospital = Hospital::where('user_id', Auth::id())->first();
         
         $database =  strtolower($hospital->hospital_database);
 
@@ -38,8 +25,6 @@ class OnLoginListener
         $host = Config::get('database.connections.mysql.host');
         
         $this->connectToDatabase($host, $username, $password, $database);
-        $this->runPatchMigrations();
-
     }
 
     private function connectToDatabase($host, $username, $password, $database)
@@ -52,15 +37,5 @@ class OnLoginListener
         DB::reconnect('tenant');
         return true;
 
-    }
-
-    private function runPatchMigrations()
-    {
-           
-        Artisan::call('migrate', [
-            '--database' => 'tenant',
-            '--path' => 'database/migrations/patch',
-            '--force' => true,
-        ]);
     }
 }
