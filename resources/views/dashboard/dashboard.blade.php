@@ -1,5 +1,13 @@
 <?php
     $title = Auth::user()->name.' - Dashboard';
+
+    function setActive($data)
+    {
+      if ($data === 'dashboard')
+      {
+        return 'active';
+      }
+    }
 ?>
 @extends('layouts.dashboard-layout')
 

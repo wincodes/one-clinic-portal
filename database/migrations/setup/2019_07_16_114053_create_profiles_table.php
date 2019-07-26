@@ -22,7 +22,7 @@ class CreateProfilesTable extends Migration
             $table->string('address')->nullable();
             $table->string('city');
             $table->string('state');
-            $table->integer('country_id');
+            $table->string('country');
             $table->string('phone_number')->nullable();
             $table->integer('hospital_id');
             $table->string('position')->nullable();

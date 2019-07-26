@@ -39,6 +39,8 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::group(['prefix' => 'user'], function() {
     Route::get('/profile', 'UserController@index');
+    Route::get('/profile/create', 'UserController@profile');
+    Route::post('/profile/create', 'UserController@createProfile');
     Route::get('/profile/edit', 'UserController@editProfile');
     Route::post('/profile/edit', 'UserController@updateProfile');
 });

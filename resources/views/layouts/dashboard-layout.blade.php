@@ -34,13 +34,13 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
+          <li class="nav-item {{setActive('dashboard')}}">
             <a class="nav-link" href="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item {{setActive('profile')}}">
             <a class="nav-link" href="/user/profile">
               <i class="material-icons">person</i>
               <p>Profile</p>

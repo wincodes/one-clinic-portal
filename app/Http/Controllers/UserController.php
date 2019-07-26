@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
 use App\Models\Hospital;
 use App\Models\Country;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -27,24 +28,39 @@ class UserController extends Controller
         return view('user.profile.index')->with('profile', $profile);
     }
 
+    public function profile()
+    {
+        $country = Country::all();
+        return view('user.profile.create-profile')->with('countries', $country);
+    }
+
     public function editProfile()
     {
         $country = Country::all();
-        return view('user.profile.edit-profile')->with('countries', $country);
+        $profile = Profile::where('user_id', Auth::id())->first();
+        $hospital =  Auth::user()->hospital_name;
+
+        // $data = [
+        //     'country' => $country,
+        //     'profile' => $profile,
+        //     'hospital' => Auth::user()->hospital_name
+        // ];
+        // dd($data);
+        return view('user.profile.edit-profile', compact('country', 'profile', 'hospital'));
     }
 
-    public function updateProfile(Request $request)
+    public function createProfile(Request $request)
     {
         $this->validate($request, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'gender' => ['string', 'max:7'],
-            'address' => ['string', 'max:255'],
+            'gender' => ['nullable','string', 'max:7'],
+            'address' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:20'],
             'city' => ['required', 'string', 'max:20'],
             'state' => ['required', 'string', 'max:20'],
-            'country_id' => ['required', 'integer'],
-            'position' => ['string', 'max:255'],
+            'country' => ['required', 'string'],
+            'position' => ['nullable', 'string', 'max:255'],
             'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|nullable|max:1024'
         ]);
 
@@ -53,7 +69,7 @@ class UserController extends Controller
             $file = $request->file('picture')->getClientOriginalName();
             $fileName = time().'_'.$file;
             
-            $path = $request->file('picture')->storeAs('public/images', $fileName);
+            $request->file('picture')->storeAs('public/images', $fileName);
         }
 
         $hospital_id = Hospital::where('user_id', Auth::id())->first();
@@ -67,7 +83,7 @@ class UserController extends Controller
         $profile->address = $request->address;
         $profile->city = $request->city;
         $profile->state = $request->state;
-        $profile->country_id = $request->country_id;
+        $profile->country = $request->country;
         $profile->phone_number = $request->phone_number;
         $profile->hospital_id = $hospital_id->id;
         $profile->position = $request->position;
@@ -78,10 +94,53 @@ class UserController extends Controller
         
         if($profile->save())
         {
-            return redirect('/user/profile')->with('status', 'Profile Updated');
+            return redirect('/user/profile')->with('status', 'Profile Created');
         }else{
-            return  'An error Occurred Please try again';
+            return redirect('/user/profile')->with('status', 'An error Occurred Please try again');
         }
 
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'gender' => ['nullable','string', 'max:7'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:20'],
+            'city' => ['required', 'string', 'max:20'],
+            'state' => ['required', 'string', 'max:20'],
+            'country' => ['required', 'string'],
+            'position' => ['nullable', 'string', 'max:255'],
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|nullable|max:1024'
+        ]);
+
+          
+        $profile = Profile::where('user_id', Auth::id())->first();
+
+        $update = $request->all();
+
+        if($request->hasFile('picture'))
+        {
+            Storage::delete('public/images/'.$profile->picture);
+
+            $file = $request->file('picture')->getClientOriginalName();
+            $fileName = time().'_'.$file;
+            
+            $request->file('picture')->storeAs('public/images', $fileName);
+
+            $update['picture'] = $fileName;
+        }
+        
+
+        if( $profile->update($update))
+        {
+            return redirect('/user/profile')->with('status', 'Profile Updated');
+        }else{
+            return redirect('/user/profile')->with('status', 'An error Occurred Please try again');
+        }
+
+        return $request->all();
     }
 }
