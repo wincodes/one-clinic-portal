@@ -9,6 +9,6 @@ class Hospital extends Model
     protected $connection = 'mysql';
     protected $table = 'hospitals';
 
-    protected $fillable = ['user_id', 'hospital_name', 'address', 'city', 'state', 'country_id'];
+    protected $fillable = ['user_id', 'hospital_database', 'address', 'city', 'state', 'country_id'];
 
 }
