@@ -1,19 +1,5 @@
-<?php
-    $title = Auth::user()->name.' - Dashboard';
-
-    function setActive($data)
-    {
-      if ($data === 'dashboard')
-      {
-        return 'active';
-      }
-    }
-?>
-@extends('layouts.dashboard-layout')
-
-@section('content')
-      <div class="content">
-        <div class="container-fluid">
+<template>
+  <div class="container-fluid">
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
@@ -426,5 +412,4 @@
             </div>
           </div>
         </div>
-      </div>
-      @endsection
+</template>
