@@ -20,6 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 import App from './components/App.vue'
+import router from './router'
+import store from './store'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,8 +29,10 @@ import App from './components/App.vue'
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+new Vue({
     el: '#app',
+    router,
+    store,
     components: {
         App
     }

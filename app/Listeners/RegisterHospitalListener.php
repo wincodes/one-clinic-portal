@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\RegistrationEvent;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Hospital;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
@@ -33,7 +33,7 @@ class RegisterHospitalListener
         //$event->registered
         // dd($event->registered);
         $initial_hospital_name = str_replace(' ', '_', $event->registered->hospital_name);
-        $hospital_name = 'ocp_'.$initial_hospital_name;
+        $hospital_name = 'ocp_' . $initial_hospital_name;
 
         //create a new hospital
         Hospital::create([
@@ -45,7 +45,7 @@ class RegisterHospitalListener
             'country_id' => $event->registered->country
         ]);
 
-        
+
         //create a  new MySQL Database for the user
         $this->createSchema($hospital_name);
 
@@ -71,26 +71,26 @@ class RegisterHospitalListener
 
     function createSchema($schemaName)
     {
-                return DB::statement('CREATE DATABASE ' . $schemaName);
+        return DB::statement('CREATE DATABASE ' . $schemaName);
     }
 
     private function runSetupMigrations()
     {
-           
-                Artisan::call('migrate', [
-                    '--database' => 'tenant',
-                    '--path' => 'database/migrations/setup',
-                    '--force' => true,
-                ]);
+
+        Artisan::call('migrate', [
+            '--database' => 'tenant',
+            '--path' => 'database/migrations/setup',
+            '--force' => true,
+        ]);
     }
 
     private function runPatchMigrations()
     {
-           
-                Artisan::call('migrate', [
-                    '--database' => 'tenant',
-                    '--path' => 'database/migrations/patch',
-                    '--force' => true,
-                ]);
+
+        Artisan::call('migrate', [
+            '--database' => 'tenant',
+            '--path' => 'database/migrations/patch',
+            '--force' => true,
+        ]);
     }
 }

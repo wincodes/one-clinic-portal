@@ -25,6 +25,11 @@
   </div>
 
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/core/jquery.min.js') }}"></script>
+  <script src="{{ asset('js/core/popper.min.js') }}" ></script>
+  <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
+  <script src="{{ asset('js/material-dashboard.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
 </body>
 
 </html>

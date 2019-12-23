@@ -7,15 +7,13 @@
                   <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                   </div>
-                  <p class="card-category">Used Space</p>
-                  <h3 class="card-title">49/50
-                    <small>GB</small>
+                  <p class="card-category">Admitted</p>
+                  <h3 class="card-title">20
                   </h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Get More Space...</a>
+                    <i class="material-icons">date_range</i> Last 24 Hours
                   </div>
                 </div>
               </div>
@@ -26,8 +24,8 @@
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Revenue</p>
-                  <h3 class="card-title">$34,245</h3>
+                  <p class="card-category">Discharged</p>
+                  <h3 class="card-title">20</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
