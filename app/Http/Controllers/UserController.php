@@ -25,7 +25,10 @@ class UserController extends Controller
     public function index()
     {
         $profile = Profile::where('user_id', Auth::id())->first();
-        return view('user.profile.index')->with('profile', $profile);
+        // return view('user.profile.index')->with('profile', $profile);
+        return response()->json([
+            'profile' => $profile
+        ], 200);
     }
 
     public function profile()

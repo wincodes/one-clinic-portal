@@ -16,7 +16,10 @@
   <!-- CSS Files -->
   <link href="{{ asset('css/material-dashboard.css') }}" rel="stylesheet" />
   {{--  <!-- CSS Just for demo purpose, dont include it in your project -->  --}}
-  <link href="{{ asset('demo/demo.css" rel="stylesheet') }}" />
+  {{-- <link href="{{ asset('demo/demo.css" rel="stylesheet') }}" /> --}}
+
+  {{-- font awesome --}}
+  <script src="https://kit.fontawesome.com/5658b35203.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="">
@@ -30,6 +33,8 @@
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
   <script src="{{ asset('js/material-dashboard.js') }}" type="text/javascript"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <!-- Chartist JS -->
+  <script src="{{ asset('js/plugins/chartist.min.js') }}"></script>
 </body>
 
 </html>
