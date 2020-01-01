@@ -6,11 +6,12 @@ Vue.use(VueRouter);
 import Dashboard from '../components/Dashboard.vue'
 import Profile from '../components/user/Profile.vue'
 import CreateProfile from '../components/user/CreateProfile.vue'
+import EditProfile from '../components/user/EditProfile.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'dashboard',
+    name: 'index',
     component: Dashboard
   },
   {
@@ -25,8 +26,13 @@ const routes = [
   },
   {
     path: '/user/profile/create',
-    name: 'profile',
+    name: 'create-profile',
     component: CreateProfile
+  },
+  {
+    path: '/user/profile/edit',
+    name: 'edit-profile',
+    component: EditProfile
   },
 ];
 

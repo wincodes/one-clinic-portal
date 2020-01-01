@@ -25,8 +25,11 @@ import store from './store'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vue-loaders/dist/vue-loaders.css';
+import VueLoaders from 'vue-loaders';
 
 Vue.use(BootstrapVue)
+Vue.use(VueLoaders);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
