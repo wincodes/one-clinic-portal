@@ -28,9 +28,15 @@ class SendWelcomeMailListener
      */
     public function handle($event)
     {
-        //this will send a welcome mail to the user
-        $data = $event->registered;
-        $url = config("app.url").'/register/confirm/'.$event->registered->email.'/'.$event->registered->remember_token;
-        Mail::to($data->email)->send(new WelcomeMail($data, $url));
+        try {
+
+            //this will send a welcome mail to the user
+            $data = $event->registered;
+            $url = config("app.url") . '/register/confirm/' . $event->registered->email . '/' . $event->registered->remember_token;
+            Mail::to($data->email)->send(new WelcomeMail($data, $url));
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

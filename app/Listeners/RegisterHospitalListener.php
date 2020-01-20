@@ -30,10 +30,8 @@ class RegisterHospitalListener
      */
     public function handle($event)
     {
-        //$event->registered
-        // dd($event->registered);
         $initial_hospital_name = str_replace(' ', '_', $event->registered->hospital_name);
-        $hospital_name = 'ocp_' . $initial_hospital_name;
+        $hospital_name = 'cp_' . $initial_hospital_name;
 
         //create a new hospital
         Hospital::create([
@@ -64,8 +62,6 @@ class RegisterHospitalListener
         Config::set('database.connections.tenant.username', $username);
         Config::set('database.connections.tenant.password', $password);
         Config::set('database.connections.tenant.database', $database);
-        // DB::reconnect('tenant');
-        // return true;
 
     }
 
