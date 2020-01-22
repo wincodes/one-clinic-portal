@@ -16,9 +16,9 @@ trait TenantDb
      */
     public function __construct()
     {
-        $hospital = Hospital::where('user_id', Auth::id())->first();
+        $hospital = Hospital::find(Auth::user()->hospital_id);
         
-        $database =  strtolower($hospital->hospital_database);
+        $database =  $hospital->hospital_database;
 
         $username = Config::get('database.connections.mysql.username');
         $password = Config::get('database.connections.mysql.password');

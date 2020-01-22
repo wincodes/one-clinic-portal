@@ -37,13 +37,23 @@ Route::get('/register/resend', 'RegisterController@resend');
 Route::post('/register/resend', 'RegisterController@verifyMail');
 
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::get('/', 'DashboardController@index');
+    Route::get('/all', 'DashboardController@dashboard');
+});
 
 
 Route::group(['prefix' => 'user'], function() {
     Route::get('/profile', 'UserController@index');
     Route::post('/profile/create', 'UserController@createProfile');
     Route::post('/profile/update', 'UserController@updateProfile');
+});
+
+Route::group(['prefix' => 'employee'], function() {
+    Route::post('/create', 'EmployeeController@createEmployee')->middleware('admin');
+    Route::get('/all', 'EmployeeController@getEmployees');
+    Route::put('/{id}', 'EmployeeController@updateEmployee')->middleware('admin');
+    Route::delete('/{id}', 'EmployeeController@deleteEmployee')->middleware('admin');
 });
 
 Route::get('/countries', 'CountryController@index');

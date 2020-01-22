@@ -29,9 +29,9 @@ class OnLoginListener
      */
     public function handle($event)
     {
-        $hospital = Hospital::where('user_id',  $event->user->id)->first();
+        $hospital = Hospital::find($event->user->hospital_id);
 
-        $database =  strtolower($hospital->hospital_database);
+        $database =  $hospital->hospital_database;
 
         $username = Config::get('database.connections.mysql.username');
         $password = Config::get('database.connections.mysql.password');

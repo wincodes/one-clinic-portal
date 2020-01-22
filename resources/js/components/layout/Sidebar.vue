@@ -5,22 +5,29 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item" :class="{active: $route.name === 'dashboard'}">
+        <li class="nav-item" :class="{active: $route.name === 'dashboard' || $route.name === 'index'}">
           <routerLink class="nav-link" to="/dashboard">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </routerLink>
         </li>
-        <li class="nav-item" :class="{active: $route.name === 'profile'}">
+        <li
+          class="nav-item"
+          :class="{active: $route.name === 'profile' ||  $route.name === 'create-profile' ||  $route.name === 'edit-profile'}"
+        >
           <routerLink class="nav-link" to="/user/profile">
             <i class="material-icons">person</i>
             <p>Profile</p>
           </routerLink>
         </li>
-        <li class="nav-item">
-          <routerLink class="nav-link" to="/dashboard">
+        <li
+          class="nav-item"
+          v-if="auth.user.role === 'admin'"
+          :class="{active: $route.name === 'employee' || $route.name === 'create-employee'}"
+        >
+          <routerLink class="nav-link" to="/employee">
             <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+            <p>Employees</p>
           </routerLink>
         </li>
         <li class="nav-item">
@@ -63,3 +70,12 @@
     </div>
   </div>
 </template>
+<script>
+import { mapState } from "vuex";
+export default {
+  name: "sidebar",
+  computed: {
+    ...mapState(["auth"])
+  }
+};
+</script>

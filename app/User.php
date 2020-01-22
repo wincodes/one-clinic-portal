@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'role', 'hospital_name', 'confirmed', 'active', 'remember_token', 'online_status'
+        'name', 'email', 'password', 'phone', 'role', 'hospital_name', 'hospital_id', 'confirmed', 'active', 'remember_token', 'online_status'
     ];
 
     /**
@@ -45,5 +45,10 @@ class User extends Authenticatable
     public function profile()
     {
     	return $this->hasOne('App\Models\Profile');
+    }
+
+    public function staffDetails()
+    {
+    	return $this->hasOne('App\Models\StaffDetails');
     }
 }
