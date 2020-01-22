@@ -18,7 +18,7 @@ trait TenantDb
     {
         $hospital = Hospital::find(Auth::user()->hospital_id);
         
-        $database =  strtolower($hospital->hospital_database);
+        $database =  $hospital->hospital_database;
 
         $username = Config::get('database.connections.mysql.username');
         $password = Config::get('database.connections.mysql.password');

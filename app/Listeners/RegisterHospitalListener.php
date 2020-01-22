@@ -33,7 +33,7 @@ class RegisterHospitalListener
     public function handle($event)
     {
         $initial_hospital_name = str_replace(' ', '_', $event->registered->hospital_name);
-        $hospital_name = 'cp_' . $initial_hospital_name;
+        $hospital_name = strtolower('cp_' . $initial_hospital_name);
 
         //create a new hospital
         $createdHospital = Hospital::create([
