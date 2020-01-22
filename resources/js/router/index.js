@@ -7,6 +7,8 @@ import Dashboard from '../components/Dashboard.vue'
 import Profile from '../components/user/Profile.vue'
 import CreateProfile from '../components/user/CreateProfile.vue'
 import EditProfile from '../components/user/EditProfile.vue'
+import CreateEmployee from '../components/user/employee/Create.vue'
+import Employee from '../components/user/employee/Employee.vue'
 
 const routes = [
   {
@@ -34,6 +36,16 @@ const routes = [
     name: 'edit-profile',
     component: EditProfile
   },
+  {
+    path: '/employee/create',
+    name: 'create-employee',
+    component: CreateEmployee
+  },
+  {
+    path: '/employee',
+    name: 'employee',
+    component: Employee
+  }
 ];
 
 const router = new VueRouter({

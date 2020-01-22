@@ -59,8 +59,6 @@ class UserController extends Controller
             $request->file('picture')->storeAs('public/images/uploads', $fileName);
         }
 
-        $hospital_id = Hospital::where('user_id', Auth::id())->first();
-
         $profile = new Profile;
 
         $profile->user_id = Auth::id();
@@ -72,14 +70,12 @@ class UserController extends Controller
         $profile->state = $request->state;
         $profile->country = $request->country;
         $profile->phone_number = $request->phone_number;
-        $profile->hospital_id = $hospital_id->id;
+        $profile->hospital_id = Auth::user()->hospital_id;
         $profile->position = $request->position;
 
-        $profile->save();
+        empty($fileName) ? $profile->picture = null :  $profile->picture = $fileName;
 
-        if (!empty($fileName)) {
-            $profile->picture = $fileName;
-        }
+        $profile->save();
 
         return response()->json(['profile' => $profile], 201);
     }

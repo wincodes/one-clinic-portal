@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StaffDetails;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -26,6 +27,16 @@ class DashboardController extends Controller
         // return view('home');
 
         return view('dashboard');
+    }
+
+    public function dashboard(){
+        $staff = StaffDetails::where('id', '>', 0)->limit(5)->get();
+
+        $dashboard = (object) [
+            'staffs' => $staff
+        ];
+
+        return response()->json(['dashboard' => $dashboard], 200);
     }
 
     

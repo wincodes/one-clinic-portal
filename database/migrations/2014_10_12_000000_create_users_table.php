@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('hospital_name');
+            $table->bigInteger('hospital_id')->nullable();
             $table->integer('active');
             $table->integer('confirmed');
             $table->integer('online_status');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('role');
             $table->timestamp('last_active_time')->nullable();
             $table->timestamp('last_login')->nullable();

@@ -19,7 +19,7 @@ class CreateStaffDetailsTable extends Migration
             $table->string('first_name', 45);
             $table->string('last_name', 45);
             $table->date('birth_date')->nullable();
-            $table->bigInteger('department_id');
+            $table->bigInteger('department_id')->nullable();
             $table->string('office', 45)->nullable();
             $table->string('phone_number', 80)->nullable();
             $table->timestamps();

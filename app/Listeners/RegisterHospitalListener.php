@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\User;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\RegistrationEvent;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Hospital;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterHospitalListener
 {
@@ -34,7 +36,7 @@ class RegisterHospitalListener
         $hospital_name = 'cp_' . $initial_hospital_name;
 
         //create a new hospital
-        Hospital::create([
+        $createdHospital = Hospital::create([
             'user_id' => $event->registered->id,
             'hospital_database' => $hospital_name,
             'address' => $event->registered->hospital_address,
@@ -42,6 +44,10 @@ class RegisterHospitalListener
             'state' => $event->registered->state,
             'country_id' => $event->registered->country
         ]);
+
+        $user = User::find($event->registered->id);
+        $user->hospital_id = $createdHospital->id;
+        $user->save();
 
 
         //create a  new MySQL Database for the user
@@ -62,7 +68,6 @@ class RegisterHospitalListener
         Config::set('database.connections.tenant.username', $username);
         Config::set('database.connections.tenant.password', $password);
         Config::set('database.connections.tenant.database', $database);
-
     }
 
     function createSchema($schemaName)
